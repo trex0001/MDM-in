@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<body style="margin: 0; padding: 0; background-color: black;">
+    
+    <!-- 背景容器 -->
+    <div style="width: 100vw; height: 100vh; background-image: url('123.jpeg'); background-size: cover; background-position: center; position: relative;">
+        
+        <!-- 文字顯示區域 -->
+        <div id="info-display" style="
+            position: absolute;
+            top: 45%; 
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'MingLiU', 'PMingLiU', '新細明體', serif;
+            color: black;
+            font-size: 10vw; /* 改用 vw 確保手機上不折行，你可以根據需求調整數值 */
+            font-weight: bold;
+            padding: 10px;
+            white-space: nowrap;
+            background: rgba(255, 255, 255, 0.5); /* 增加辨識度的底色，不需要可刪除 */
+            border-radius: 5px;
+        ">
+        </div>
+
+    </div>
+
+    <script>
+        // 網頁載入時立即執行
+        (function() {
+            const now = new Date();
+            
+            // 1. 計算民國年
+            const minguoYear = now.getFullYear() - 1911;
+            
+            // 2. 格式化日期與時間 (補零)
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            
+            // 3. 組合文字內容：來源時間：民國年/月/日 時:分:秒
+            const displayText = `來源時間：${minguoYear}/${month}/${day} ${hours}:${minutes}:${seconds}`;
+            
+            // 4. 顯示到畫面上
+            document.getElementById('info-display').innerText = displayText;
+        })();
+    </script>
+</body>
+</html>
