@@ -16,7 +16,8 @@
             font-size: 4vw; /* 改用 vw 確保手機上不折行，你可以根據需求調整數值 */
             font-weight: normal;
             padding: 10px;
-            white-space: nowrap;
+            text-align: center; /* 改成 center，這樣兩行文字都會水平居中 */
+            line-height: 1.5;
             background: rgba(255, 255, 255, 0.5); /* 增加辨識度的底色，不需要可刪除 */
             border-radius: 5px;
         ">
@@ -24,8 +25,7 @@
 
     </div>
 
-    <script>
-        // 網頁載入時立即執行
+<script>
         (function() {
             const now = new Date();
             
@@ -39,11 +39,14 @@
             const minutes = String(now.getMinutes()).padStart(2, '0');
             const seconds = String(now.getSeconds()).padStart(2, '0');
             
-            // 3. 組合文字內容：來源時間：民國年/月/日 時:分:秒
-            const displayText = `來源時間：${minguoYear}/${month}/${day} ${hours}:${minutes}:${seconds}`;
+            // 3. 組合兩行文字：使用 <br> 換行
+            // 第一行：來源時間
+            // 第二行：時間來源
+            const line1 = `時間來源：網路`;
+            const line2 = `來源時間：${minguoYear}/${month}/${day} ${hours}:${minutes}:${seconds}`;
             
-            // 4. 顯示到畫面上
-            document.getElementById('info-display').innerText = displayText;
+            // 4. 顯示到畫面上 (注意這裡要用 innerHTML 才能解析 <br> 換行符號)
+            document.getElementById('info-display').innerHTML = `${line1}<br>${line2}`;
         })();
     </script>
 </body>
